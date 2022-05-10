@@ -2,7 +2,9 @@ import React from "react";
 import { View, FlatList } from "react-native";
 import PunchCard from "./compose/punch-card/punch-card";
 import Template from "../../components/template/template";
-import FloatingButton from "../../components/floating-button/floating-button"
+import FloatingButton from "../../components/floating-button/floating-button";
+import theme from "../../styles/theme";
+import { moderateScale } from "react-native-size-matters";
 
 const DATA = [
   {
@@ -50,12 +52,21 @@ const DATA = [
 const PunchListScreen = () => {
   return (
     <Template>
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+        }}
+      >
         <FlatList
           data={DATA}
           renderItem={PunchCard}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingBottom: 70 }}
+          contentContainerStyle={{
+            paddingBottom: moderateScale(70),
+            paddingTop: theme.spacing.m,
+            marginHorizontal: theme.spacing.m,
+          }}
         />
       </View>
       <FloatingButton />
