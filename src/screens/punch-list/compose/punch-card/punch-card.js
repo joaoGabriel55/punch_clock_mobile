@@ -1,14 +1,14 @@
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { View } from "react-native";
-import { moderateScale } from "react-native-size-matters";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import { moderateScale } from "react-native-size-matters";
 import {
   Container,
-  Label,
-  Info,
   Hours,
   Icon,
+  Info,
+  Label,
   RemoveCard,
   RemoveCardText,
 } from "./punch-card.style";
