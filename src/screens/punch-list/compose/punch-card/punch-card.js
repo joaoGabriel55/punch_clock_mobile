@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { moderateScale } from "react-native-size-matters";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -13,10 +13,10 @@ import {
   RemoveCardText,
 } from "./punch-card.style";
 
-const PunchCard = ({ item }) => {
+const PunchCard = ({ item, deletePunch }) => {
   const renderLeftActions = () => {
     return (
-      <RemoveCard>
+      <RemoveCard onPress={() => deletePunch(item.id)}>
         <FontAwesome5 name="trash" size={moderateScale(15)} color="white" />
         <RemoveCardText>Remover</RemoveCardText>
       </RemoveCard>

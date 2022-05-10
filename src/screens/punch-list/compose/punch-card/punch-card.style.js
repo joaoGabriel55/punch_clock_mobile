@@ -35,7 +35,7 @@ export const Info = styled.Text`
   margin-bottom: ${({ theme }) => theme.spacing.s}px;
 `;
 
-export const RemoveCard = styled.View`
+export const RemoveCard = styled.TouchableOpacity`
   flex: 1;
   max-width: 40%;
   flex-direction: row;
