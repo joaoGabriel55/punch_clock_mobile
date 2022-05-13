@@ -15,6 +15,7 @@ import { moderateScale } from "react-native-size-matters";
 function Header() {
   const navigation = useNavigation();
   const canGoBack = navigation.canGoBack();
+
   return (
     <Container>
       {canGoBack && (

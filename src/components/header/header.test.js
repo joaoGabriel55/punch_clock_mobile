@@ -23,7 +23,7 @@ describe("Header", () => {
   it("renders a PunchClock title", () => {
     const { getByText } = setup();
     const headerTitle = getByText("PunchClock");
-    
+
     expect(headerTitle).toBeTruthy();
   });
 
