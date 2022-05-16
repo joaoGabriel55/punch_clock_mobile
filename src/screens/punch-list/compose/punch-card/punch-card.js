@@ -16,7 +16,7 @@ import {
 const PunchCard = ({ item, deletePunch }) => {
   const renderLeftActions = () => {
     return (
-      <RemoveCard onPress={() => deletePunch(item.id)}>
+      <RemoveCard onPress={() => deletePunch(item)}>
         <FontAwesome5 name="trash" size={moderateScale(15)} color="white" />
         <RemoveCardText>Remover</RemoveCardText>
       </RemoveCard>

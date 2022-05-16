@@ -17,6 +17,9 @@
       "@test/*": [
         "src/test/*",
       ],
+      "@utils/*": [
+        "src/utils/*",
+      ],
       "@assets/*": [
         "./assets/*",
       ],
