@@ -7,16 +7,14 @@ import { ThemeProvider } from "styled-components/native";
 
 export default function App() {
   return (
-    <>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <ThemeProvider theme={theme}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar style="auto" />
-            <MainNavigator />
-          </SafeAreaView>
-        </ThemeProvider>
-      </GestureHandlerRootView>
-      <Toast />
-    </>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <StatusBar style="auto" />
+          <MainNavigator />
+          <Toast />
+        </SafeAreaView>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -16,15 +16,21 @@ const usePunchesMock = ({
   });
 };
 
-const setup = () => render(<PunchListScreen />);
+const setup = ({
+  punches = [],
+  deletePunch = jest.fn(),
+  restorePunch = jest.fn(),
+} = {}) => {
+  usePunchesMock({ punches, deletePunch, restorePunch });
+
+  return render(<PunchListScreen />);
+};
 
 describe("PunchListScreen", () => {
   beforeEach(jest.clearAllMocks);
 
   describe("When punches are empty", () => {
     it("renders Not found message", () => {
-      usePunchesMock();
-
       const { getByText } = setup();
 
       expect(getByText("Nada encontrado!")).toBeTruthy();
@@ -33,7 +39,7 @@ describe("PunchListScreen", () => {
 
   describe("When punches are not empty", () => {
     it("renders punches", () => {
-      usePunchesMock({
+      const { getByText, queryByText } = setup({
         punches: [
           {
             id: 1,
@@ -48,8 +54,6 @@ describe("PunchListScreen", () => {
         ],
       });
 
-      const { getByText, queryByText } = setup();
-
       expect(queryByText("Nada encontrado!")).toBeFalsy();
 
       expect(getByText("Ifood")).toBeTruthy();
@@ -61,7 +65,7 @@ describe("PunchListScreen", () => {
     it("calls deletePunch with punch removed id", () => {
       const deletePunch = jest.fn();
 
-      usePunchesMock({
+      const { getByText } = setup({
         punches: [
           {
             id: 1,
@@ -77,15 +81,13 @@ describe("PunchListScreen", () => {
         deletePunch,
       });
 
-      const { getByText } = setup();
-
       fireEvent.press(getByText("Remover"));
 
       expect(deletePunch).toBeCalledWith(1);
     });
 
     it("renders toast message", () => {
-      usePunchesMock({
+      const { getByText } = setup({
         punches: [
           {
             id: 1,
@@ -100,8 +102,6 @@ describe("PunchListScreen", () => {
         ],
       });
 
-      const { getByText } = setup();
-
       fireEvent.press(getByText("Remover"));
 
       const renderedToast = getByText(
@@ -115,7 +115,7 @@ describe("PunchListScreen", () => {
       it("calls restorePunch", () => {
         const restorePunch = jest.fn();
 
-        usePunchesMock({
+        const { getByText } = setup({
           punches: [
             {
               id: 1,
@@ -131,8 +131,6 @@ describe("PunchListScreen", () => {
           restorePunch,
         });
 
-        const { getByText } = setup();
-
         fireEvent.press(getByText("Remover"));
 
         const renderedToast = getByText(
@@ -141,21 +139,19 @@ describe("PunchListScreen", () => {
 
         fireEvent.press(renderedToast);
 
-        expect(restorePunch).toBeCalledWith(
-          expect.objectContaining({
-            index: 0,
-            punchRemoved: {
-              afternoonFrom: "13:00",
-              afternoonTo: "18:00",
-              date: "01/10/2021",
-              id: 1,
-              morningFrom: "09:00",
-              morningTo: "12:00",
-              projectName: "Ifood",
-              totalHours: "08:00",
-            },
-          })
-        );
+        expect(restorePunch).toBeCalledWith({
+          index: 0,
+          punchRemoved: {
+            afternoonFrom: "13:00",
+            afternoonTo: "18:00",
+            date: "01/10/2021",
+            id: 1,
+            morningFrom: "09:00",
+            morningTo: "12:00",
+            projectName: "Ifood",
+            totalHours: "08:00",
+          },
+        });
       });
     });
   });

@@ -16,7 +16,7 @@ const PunchListScreen = () => {
 
   if (noPunches) return <NoContent message="Nada encontrado!" />;
 
-  const handleDeletePunch = (index) => (punchRemoved) => {
+  const handleDeletePunch = (index, punchRemoved) => {
     deletePunch(punchRemoved.id);
 
     showToast({
@@ -39,7 +39,12 @@ const PunchListScreen = () => {
         <FlatList
           data={punches}
           renderItem={({ item, index }) => (
-            <PunchCard item={item} deletePunch={handleDeletePunch(index)} />
+            <PunchCard
+              item={item}
+              deletePunch={(item) => {
+                handleDeletePunch(index, item);
+              }}
+            />
           )}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{

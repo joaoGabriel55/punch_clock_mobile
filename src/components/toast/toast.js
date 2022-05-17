@@ -4,9 +4,10 @@ import ReactToast, {
   ErrorToast,
   InfoToast,
 } from "react-native-toast-message";
+import theme from "../../styles/theme";
 
 const text1Style = {
-  fontSize: 18,
+  fontSize: theme.fontSizes.medium,
   fontWeight: "600",
 };
 

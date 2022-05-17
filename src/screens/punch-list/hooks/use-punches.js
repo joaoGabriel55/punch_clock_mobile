@@ -12,9 +12,11 @@ function usePunches() {
 
   const restorePunch = ({ index, punchRemoved }) => {
     setPunches((punches) => {
-      punches.splice(index, 0, punchRemoved);
+      const restoredPunches = [...punches];
 
-      return punches;
+      restoredPunches.splice(index, 0, punchRemoved);
+
+      return restoredPunches;
     });
   };
 
