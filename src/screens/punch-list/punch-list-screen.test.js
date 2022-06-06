@@ -4,6 +4,19 @@ import PunchListScreen from "./punch-list-screen";
 
 jest.mock("./hooks/use-punches", () => jest.fn());
 
+const MOCK_PUNCHES = [
+  {
+    id: 1,
+    projectName: "Ifood",
+    morningFrom: "09:00",
+    morningTo: "12:00",
+    afternoonFrom: "13:00",
+    afternoonTo: "18:00",
+    totalHours: "08:00",
+    date: "01/10/2021",
+  },
+];
+
 const usePunchesMock = ({
   punches = [],
   deletePunch = jest.fn(),
@@ -39,20 +52,7 @@ describe("PunchListScreen", () => {
 
   describe("When punches are not empty", () => {
     it("renders punches", () => {
-      const { getByText, queryByText } = setup({
-        punches: [
-          {
-            id: 1,
-            projectName: "Ifood",
-            morningFrom: "09:00",
-            morningTo: "12:00",
-            afternoonFrom: "13:00",
-            afternoonTo: "18:00",
-            totalHours: "08:00",
-            date: "01/10/2021",
-          },
-        ],
-      });
+      const { getByText, queryByText } = setup({ punches: MOCK_PUNCHES });
 
       expect(queryByText("Nada encontrado!")).toBeFalsy();
 
@@ -65,21 +65,7 @@ describe("PunchListScreen", () => {
     it("calls deletePunch with punch removed id", () => {
       const deletePunch = jest.fn();
 
-      const { getByText } = setup({
-        punches: [
-          {
-            id: 1,
-            projectName: "Ifood",
-            morningFrom: "09:00",
-            morningTo: "12:00",
-            afternoonFrom: "13:00",
-            afternoonTo: "18:00",
-            totalHours: "08:00",
-            date: "01/10/2021",
-          },
-        ],
-        deletePunch,
-      });
+      const { getByText } = setup({ punches: MOCK_PUNCHES, deletePunch });
 
       fireEvent.press(getByText("Remover"));
 
@@ -87,20 +73,7 @@ describe("PunchListScreen", () => {
     });
 
     it("renders toast message", () => {
-      const { getByText } = setup({
-        punches: [
-          {
-            id: 1,
-            projectName: "Ifood",
-            morningFrom: "09:00",
-            morningTo: "12:00",
-            afternoonFrom: "13:00",
-            afternoonTo: "18:00",
-            totalHours: "08:00",
-            date: "01/10/2021",
-          },
-        ],
-      });
+      const { getByText } = setup({ punches: MOCK_PUNCHES });
 
       fireEvent.press(getByText("Remover"));
 
@@ -115,21 +88,7 @@ describe("PunchListScreen", () => {
       it("calls restorePunch", () => {
         const restorePunch = jest.fn();
 
-        const { getByText } = setup({
-          punches: [
-            {
-              id: 1,
-              projectName: "Ifood",
-              morningFrom: "09:00",
-              morningTo: "12:00",
-              afternoonFrom: "13:00",
-              afternoonTo: "18:00",
-              totalHours: "08:00",
-              date: "01/10/2021",
-            },
-          ],
-          restorePunch,
-        });
+        const { getByText } = setup({ punches: MOCK_PUNCHES, restorePunch });
 
         fireEvent.press(getByText("Remover"));
 
