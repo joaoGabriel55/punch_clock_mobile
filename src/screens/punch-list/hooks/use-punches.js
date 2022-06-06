@@ -1,5 +1,5 @@
 import { useState } from "react";
-import punchesData from "./__mocks__/mock-punches.json";
+import punchesData from "@test/mocks/punches.json";
 
 function usePunches() {
   const [punches, setPunches] = useState(punchesData);
