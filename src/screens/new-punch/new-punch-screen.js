@@ -15,22 +15,22 @@ import Button from "../../components/button/button";
 import SelectForm from "../../components/select/select-form";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import useNewPunchScreen from "./use-new-punch-screen";
-import DatePicker from "@react-native-community/datetimepicker";
 import Input from "@components/input/input";
 import format from "date-fns/format";
+import DatePickerInput from "@components/date-picker-input/date-picker-input";
 
 const NewPunchScreen = () => {
   const {
     control,
-    handleSubmit,
     navigation,
     today,
-    onSubmit,
-    setCurrentTimeInput,
     currentTimeInput,
     values,
     open,
+    onSubmit,
     onDateChange,
+    setCurrentTimeInput,
+    handleSubmit,
   } = useNewPunchScreen();
 
   return (
@@ -122,14 +122,12 @@ const NewPunchScreen = () => {
           />
         </Container>
       </Template>
-
-      {open && (
-        <DatePicker
-          mode="time"
-          value={values[currentTimeInput] || new Date()}
-          onChange={onDateChange}
-        />
-      )}
+      <DatePickerInput
+        open={open}
+        value={values[currentTimeInput]}
+        onSelectDate={onDateChange}
+        onClose={() => setCurrentTimeInput(null)}
+      />
     </>
   );
 };
