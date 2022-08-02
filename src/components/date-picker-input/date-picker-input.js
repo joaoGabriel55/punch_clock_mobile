@@ -10,6 +10,7 @@ const DatePickerInput = ({
   value = new Date(),
   onSelectDate,
   onClose,
+  ...props
 }) => {
   if (!open) return null;
 
@@ -22,7 +23,12 @@ const DatePickerInput = ({
   };
 
   return (
-    <DatePicker mode="time" value={value} onChange={handleChangeDatePicker} />
+    <DatePicker
+      mode="time"
+      value={value}
+      onChange={handleChangeDatePicker}
+      {...props}
+    />
   );
 };
 
