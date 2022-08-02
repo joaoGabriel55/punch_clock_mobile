@@ -34,12 +34,14 @@ const setup = ({
 } = {}) => {
   DatePickerMock(isDismissed);
 
+  const dataValue = new Date(2022, 2, 12, 8, 0).toLocaleString();
+
   return render(
     <DatePickerInput
       open={open}
       onSelectDate={onSelectDate}
       onClose={onClose}
-      value={new Date(2022, 2, 12, 8, 0)}
+      value={dataValue}
     />
   );
 };
