@@ -67,12 +67,7 @@ const useNewPunchScreen = () => {
     console.log(data);
   };
 
-  const onDateChange = (event, date) => {
-    if (event.type === "dismissed") {
-      setCurrentTimeInput(null);
-      return;
-    }
-
+  const onDateChange = (date) => {
     setValue(currentTimeInput, date);
     setCurrentTimeInput(null);
   };
@@ -91,16 +86,16 @@ const useNewPunchScreen = () => {
   }, [errors]);
 
   return {
-    handleSubmit,
     control,
     navigation,
     today,
-    onSubmit,
     currentTimeInput,
-    setCurrentTimeInput,
     values,
     open,
+    onSubmit,
     onDateChange,
+    setCurrentTimeInput,
+    handleSubmit,
   };
 };
 
